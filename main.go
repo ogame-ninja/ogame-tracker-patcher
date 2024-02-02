@@ -11,7 +11,8 @@ func main() {
 	)
 
 	files := []ep.FileAndProcessors{
-		ep.NewFile("/manifest.json", processManifest),
+		ep.NewFile("manifest.json", processManifest),
+		ep.NewFile("service-worker.js", processServiceWorker),
 	}
 
 	ep.MustNew(ep.Params{
@@ -27,5 +28,10 @@ func processManifest(by []byte) []byte {
 	by = replN(by, `OGame Tracker`, "OGame Tracker Ninja", 1)
 	by = replN(by, `"https://*.ogame.gameforge.com/*"`, `"<all_urls>"`, 2)
 	by = replN(by, `"https://*.ogame.gameforge.com/game/*"`, `{old}, "*://*/bots/*/browser/html/*"`, 8)
+	return by
+}
+
+func processServiceWorker(by []byte) []byte {
+	by = replN(by, `*://*.ogame.gameforge.com/*`, `*://*/bots/*/browser/html/*`, 1)
 	return by
 }
