@@ -15,13 +15,12 @@ func main() {
 		ep.NewFile("/manifest.json", processManifest),
 	}
 
-	p := ep.MustNew(ep.Params{
+	ep.MustNew(ep.Params{
 		ExtensionName:  extensionName,
 		ExpectedSha256: tracker_2024_1_7_1011_sha256,
 		WebstoreURL:    webstoreURL,
 		Files:          files,
-	})
-	p.Start()
+	}).Start()
 }
 
 var replN = ep.MustReplaceN
