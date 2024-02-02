@@ -6,7 +6,6 @@ import (
 
 func main() {
 	const (
-		extensionName                = "tracker"
 		webstoreURL                  = "https://chromewebstore.google.com/detail/ogame-tracker/gcebldjabjlagnnnjfodjgiddnonehnd"
 		tracker_2024_1_7_1011_sha256 = "3407893e152b94b130f1a22433cfbc7fbe7dbeab864461d1926445f903549994"
 	)
@@ -16,7 +15,6 @@ func main() {
 	}
 
 	ep.MustNew(ep.Params{
-		ExtensionName:  extensionName,
 		ExpectedSha256: tracker_2024_1_7_1011_sha256,
 		WebstoreURL:    webstoreURL,
 		Files:          files,
