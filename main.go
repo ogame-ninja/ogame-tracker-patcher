@@ -29,6 +29,6 @@ var replN = ep.MustReplaceN
 func processManifest(by []byte) []byte {
 	by = replN(by, `OGame Tracker`, "OGame Tracker Ninja", 1)
 	by = replN(by, `"https://*.ogame.gameforge.com/*"`, `"<all_urls>"`, 2)
-	by = replN(by, `"https://*.ogame.gameforge.com/game/*"`, "{old}, \"*://*/bots/*/browser/html/*\"", 8)
+	by = replN(by, `"https://*.ogame.gameforge.com/game/*"`, `{old}, "*://*/bots/*/browser/html/*"`, 8)
 	return by
 }
