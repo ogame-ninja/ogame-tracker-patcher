@@ -14,6 +14,7 @@ func main() {
 		ep.NewFile("manifest.json", processManifest),
 		ep.NewFile("service-worker.js", processServiceWorker),
 		ep.NewFile("content-scripts/message-tracking.js", processMessageTracking),
+		ep.NewFile("views/js/chunk-common.1b16b708.js", processChunkCommon),
 	}
 
 	ep.MustNew(ep.Params{
@@ -39,5 +40,10 @@ func processServiceWorker(by []byte) []byte {
 
 func processMessageTracking(by []byte) []byte {
 	by = replN(by, `/game/index.php`, ``, 2)
+	return by
+}
+
+func processChunkCommon(by []byte) []byte {
+	by = replN(by, `*://*.ogame.gameforge.com/*`, `*://*/bots/*/browser/html/*`, 1)
 	return by
 }
