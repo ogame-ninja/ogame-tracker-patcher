@@ -13,6 +13,7 @@ func main() {
 	files := []ep.FileAndProcessors{
 		ep.NewFile("manifest.json", processManifest),
 		ep.NewFile("service-worker.js", processServiceWorker),
+		ep.NewFile("content-scripts/message-tracking.js", processMessageTracking),
 	}
 
 	ep.MustNew(ep.Params{
@@ -33,5 +34,10 @@ func processManifest(by []byte) []byte {
 
 func processServiceWorker(by []byte) []byte {
 	by = replN(by, `*://*.ogame.gameforge.com/*`, `*://*/bots/*/browser/html/*`, 1)
+	return by
+}
+
+func processMessageTracking(by []byte) []byte {
+	by = replN(by, `/game/index.php`, ``, 2)
 	return by
 }
