@@ -7,18 +7,18 @@ import (
 func main() {
 	const (
 		webstoreURL                    = "https://chromewebstore.google.com/detail/ogame-tracker/gcebldjabjlagnnnjfodjgiddnonehnd"
-		tracker_2024_2_23_19064_sha256 = "c96fe8bbb71aeacdde7f1168b9d05d0cac3f12782644272f9d18c87e382c5622"
+		tracker_2024_7_12_17090_sha256 = "d462665a0c6c961c3616c957112b80894b638050e06858ce0cdf65e50b0399c1"
 	)
 
 	files := []ep.FileAndProcessors{
 		ep.NewFile("manifest.json", processManifest),
 		ep.NewFile("service-worker.js", processServiceWorker),
 		ep.NewFile("content-scripts/message-tracking.js", processMessageTracking),
-		ep.NewFile("views/js/chunk-common.3896347b.js", processChunkCommon),
+		ep.NewFile("views/js/chunk-common.066aa981.js", processChunkCommon),
 	}
 
 	ep.MustNew(ep.Params{
-		ExpectedSha256: tracker_2024_2_23_19064_sha256,
+		ExpectedSha256: tracker_2024_7_12_17090_sha256,
 		WebstoreURL:    webstoreURL,
 		Files:          files,
 	}).Start()
@@ -34,12 +34,11 @@ func processManifest(by []byte) []byte {
 }
 
 func processServiceWorker(by []byte) []byte {
-	by = replN(by, `*://*.ogame.gameforge.com/*`, `*://*/bots/*/browser/html/*`, 1)
 	return by
 }
 
 func processMessageTracking(by []byte) []byte {
-	by = replN(by, `/game/index.php`, ``, 2)
+	by = replN(by, `/game/index.php`, ``, 1)
 	return by
 }
 
