@@ -7,18 +7,18 @@ import (
 func main() {
 	const (
 		webstoreURL                    = "https://chromewebstore.google.com/detail/ogame-tracker/gcebldjabjlagnnnjfodjgiddnonehnd"
-		tracker_2024_7_12_17090_sha256 = "d462665a0c6c961c3616c957112b80894b638050e06858ce0cdf65e50b0399c1"
+		tracker_2024_7_17_18144_sha256 = "834b7c9a7276ea00947d1e9c3cdc36b023e737da68287248fe27b89159299a49"
 	)
 
 	files := []ep.FileAndProcessors{
 		ep.NewFile("manifest.json", processManifest),
 		ep.NewFile("service-worker.js", processServiceWorker),
 		ep.NewFile("content-scripts/message-tracking.js", processMessageTracking),
-		ep.NewFile("views/js/chunk-common.066aa981.js", processChunkCommon),
+		ep.NewFile("views/js/chunk-common.de0fac8a.js", processChunkCommon),
 	}
 
 	ep.MustNew(ep.Params{
-		ExpectedSha256: tracker_2024_7_12_17090_sha256,
+		ExpectedSha256: tracker_2024_7_17_18144_sha256,
 		WebstoreURL:    webstoreURL,
 		Files:          files,
 	}).Start()
