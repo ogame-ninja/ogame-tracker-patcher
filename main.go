@@ -34,6 +34,7 @@ func processManifest(by []byte) []byte {
 }
 
 func processServiceWorker(by []byte) []byte {
+	by = replN(by, `"*://*.ogame.gameforge.com/*"`, `"*://*/bots/*/browser/html/*"`, 1)
 	return by
 }
 
